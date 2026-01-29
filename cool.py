@@ -2,23 +2,23 @@ import os
 import sys
 import subprocess
 
-def get_duration(file):
+def durr(file):
     cmd = ['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', file]
     return float(subprocess.check_output(cmd).decode().strip())
 
-def get_bitrate(duration, size):
+def bitss(duration, size):
     bits = size * 8 * 1024 * 1024
     audio = 128 * 1024
     video = (bits / duration) - audio
     return max(int(video / 1024), 100)
 
-def compress(input_file):
-    output = input_file.replace('.mp4', '_compressed.mp4')
-    duration = get_duration(input_file)
-    bitrate = get_bitrate(duration, 7.5)
+def compress(filez):
+    output = filez.replace('.mp4', '_snuff_compressed.mp4')
+    duration = durr(filez)
+    bitrate = bitss(duration, 7.5)
     
     cmd = [
-        'ffmpeg', '-i', input_file,
+        'ffmpeg', '-i', filez,
         '-c:v', 'libx264',
         '-b:v', f'{bitrate}k',
         '-preset', 'medium',
