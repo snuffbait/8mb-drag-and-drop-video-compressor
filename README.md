@@ -1,7 +1,8 @@
 Compressor that uses ffmeg 
 
-pip install ffmpeg-python
-
+pip install ffmpeg-python 
+also needed 
+https://github.com/snuffbait/easy-ffmpeg/tree/main
 
 
 
